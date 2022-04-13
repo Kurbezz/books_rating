@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import ORJSONResponse
 
 from prometheus_fastapi_instrumentator import Instrumentator
 
@@ -7,7 +8,7 @@ from core.db import database
 
 
 def start_app() -> FastAPI:
-    app = FastAPI()
+    app = FastAPI(default_response_class=ORJSONResponse)
 
     app.state.database = database
 
